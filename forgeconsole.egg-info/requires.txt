@@ -1,0 +1,4 @@
+art
+cmd2
+colorama
+pycryptodome
