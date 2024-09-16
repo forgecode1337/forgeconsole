@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: forgeconsole
-Version: 0.1
-Requires-Python: >=3.6
-Requires-Dist: cmd2
-Requires-Dist: colorama
-Requires-Dist: art
-Requires-Dist: pycryptodome
