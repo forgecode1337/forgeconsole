@@ -4,13 +4,15 @@ from cmd2 import Cmd
 from colorama import Fore, Style, init
 from art import text2art
 from forgeconsole import aes, keys
+import subprocess
 
 init(autoreset=True)  # Initialize colorama
 
 class ForgeSecurityConsole(Cmd):
-    intro = Fore.GREEN + text2art("ForgeSecurity", font='block') + "\n" + "Type 'help' or '?' to list commands." + Style.RESET_ALL
+    intro = Fore.GREEN + text2art("ForgeSecurity", font='block') + Style.RESET_ALL + "\n" + \
+            Fore.CYAN + "Welcome to the ForgeSecurity Console. Type 'help' or '?' to list commands." + Style.RESET_ALL
     prompt = Fore.YELLOW + "(forgesecurity) " + Style.RESET_ALL
-
+    
     def do_aes(self, line):
         """Handle AES operations"""
         args = line.split()
@@ -62,21 +64,15 @@ class ForgeSecurityConsole(Cmd):
         self._run_external_script('forgeconsole/keys.py', [])
 
     def _run_external_script(self, script_path, args):
-        import subprocess
         result = subprocess.run(['python', script_path] + args, capture_output=True, text=True)
         self.poutput(result.stdout)
         if result.stderr:
             self.poutput(Fore.RED + result.stderr + Style.RESET_ALL)
 
 def main():
-    console = ForgeSecurityConsole()
-    console.cmdloop()
-
-def main():
     print("Starting ForgeSecurity Console...")
     console = ForgeSecurityConsole()
     console.cmdloop()
-
 
 if __name__ == "__main__":
     main()
